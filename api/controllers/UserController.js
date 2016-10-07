@@ -6,6 +6,10 @@
  */
 
 module.exports = {
-
+  profile: function(req, res) {
+    res.send({
+      user: req.user,
+      session: req.session
+    });
+  }
 };
-

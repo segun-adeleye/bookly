@@ -8,36 +8,61 @@
 var passport = require('passport');
 
 module.exports = {
+
+  _config: {
+    actions: false,
+    shortcuts: false,
+    rest: false
+  },
+
   register: function(req, res) {
-    var params = {
-      email: req.body.email,
-      password: req.body.password
-    };
-    User.create(params).exec(function(err, user) {
-      if (err) {
-        res.serverError(err);
-      } else {
-        res.send(user);
-      }
-    });
+    if (req.method === 'POST') {
+      var params = {
+        email: req.body.email,
+        password: req.body.password
+      };
+
+      User.create(params).exec(function(err, user) {
+        if (err) {
+          return res.negotiate(err);
+        } else {
+          return res.send(user);
+        }
+      });
+    }
+    if (req.method === 'GET') res.view('register');
   },
 
   login: function(req, res) {
-    passport.authenticate('local', function(err, user, info) {
-      if (err || !user) {
+    if (req.method === 'POST') {
+      if (req.user) {
         return res.send({
-          message: info.message,
-          user: user
-        });
+          loggedIn: true,
+          user: req.user
+        })
       }
-      req.logIn(user, function(err) {
-        if (err) res.send(err);
-        return res.send({
-          message: info.message,
-          user: user
+
+      passport.authenticate('local', function(err, user, info) {
+        if (err || !user) {
+          return res.send({
+            message: info.message,
+            user: user
+          });
+        }
+        req.logIn(user, function(err) {
+          if (err) res.send(err);
+          return res.send({
+            message: info.message,
+            user: user
+          });
         });
-      });
-    })(req, res);
+      })(req, res);
+    } else if (req.method === 'GET') {
+      if (req.user) {
+        return res.redirect('user/profile')
+      }
+      return res.view('login')
+    }
   },
 
   logout: function(req, res) {
@@ -45,4 +70,3 @@ module.exports = {
     res.redirect('/login')
   }
 };
-

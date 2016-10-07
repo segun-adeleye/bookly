@@ -32,10 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
-
+  '/': 'BookController.find',
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
@@ -46,16 +43,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /login': {
-    view: 'login'
-  },
+  'get /login': 'AuthController.login',
   'post /login': 'AuthController.login',
+
+  'get /register': 'AuthController.register',
+  'post /register': 'AuthController.register',
 
   '/logout': 'AuthController.logout',
 
-  'get /register': {
-    view: 'register'
-  }
-  'post /register': 'AuthController.register',
-
+  '/profile': 'UserController.profile',
 };

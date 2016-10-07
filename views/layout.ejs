@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="bookly">
   <head>
     <% title = 'Bookly' %>
     <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
@@ -30,6 +30,7 @@
     -->
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/styles/bootstrap.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
   </head>
@@ -61,7 +62,7 @@
     -->
 
     <!--TEMPLATES-->
-
+    
     <!--TEMPLATES END-->
 
 
@@ -90,6 +91,8 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/app.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
