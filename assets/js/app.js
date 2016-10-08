@@ -70,4 +70,22 @@
     };
   }]);
 
+  app.controller('RatingController', ['$scope', '$log', '$http', function($scope, $log, $http) {
+    $scope.rate = function() {
+      $http.post('/rate', {
+        rating: $scope.addRating,
+        comment: $scope.addComment,
+        book: $scope.book.id
+      }).then(function(response) {
+        var rating = response.data.rating;
+        var bookIndex = $scope.bookList.findIndex(function(book) {
+          return book.id === rating.book;
+        });
+        $scope.bookList[bookIndex].ratings.push(rating);
+      }, function(response) {
+           $log.info(response);
+      });
+    }
+  }]);
+
 })();

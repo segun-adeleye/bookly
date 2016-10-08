@@ -56,4 +56,5 @@ module.exports.routes = {
   '/book': 'BookController.index',
 
   'post /addBook': 'BookController.addBook',
+  'post /rate': 'RatingController.rate',
 };
