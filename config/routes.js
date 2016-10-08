@@ -52,4 +52,8 @@ module.exports.routes = {
   '/logout': 'AuthController.logout',
 
   '/profile': 'UserController.profile',
+
+  '/book': 'BookController.index',
+
+  'post /addBook': 'BookController.addBook',
 };

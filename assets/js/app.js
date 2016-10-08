@@ -4,11 +4,28 @@
   app.controller('BookController', ['$scope', '$http', '$location', '$log', function($scope, $http, $location, $log){
     $scope.baseUrl = 'http://' + $location.host() + ':' + $location.port();
     $scope.bookList = [];
+    $scope.userList;
 
     $scope.getBooks = function() {
       $http.get('/book/getAllBooks')
         .then(function(response) {
-          $scope.bookList = response.data;
+          var data = response.data;
+          $scope.bookList = data.books;
+          $scope.userList = data.users;
+        }, function(response) {
+             $log.info(response);
+        });
+    };
+
+    $scope.addBook = function() {
+      $http.post('/addBook', {
+        title: $scope.title,
+        author: $scope.author,
+        rating: $scope.rating,
+        comment: $scope.comment
+      }).then(function(response) {
+          var data = response.data;
+          $scope.bookList.push(data.book);
         }, function(response) {
              $log.info(response);
         });
