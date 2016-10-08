@@ -22,6 +22,17 @@ module.exports = {
       required: true
     },
 
+    // Association
+    books: {
+      collection: 'book',
+      via: 'user'
+    },
+
+    ratings: {
+      collection: 'rating',
+      via: 'user'
+    },
+
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password; // delete the password so it is not sent to the client
@@ -40,5 +51,5 @@ module.exports = {
         }
       });
     });
-  }
+  },
 };
