@@ -36,9 +36,12 @@
   </head>
 
   <body>
+    <!-- Show Logout link if user is logged in -->
+    <% if (req.isAuthenticated()) { %>
+      <a href="/logout">Logout</a>
+    <% } %>
+
     <%- body %>
-
-
 
     <!--
         Client-side Templates

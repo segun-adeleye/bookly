@@ -35,7 +35,7 @@ module.exports = {
 
   login: function(req, res) {
     if (req.method === 'POST') {
-      if (req.user) {
+      if (req.isAuthenticated()) {
         return res.send({
           loggedIn: true,
           user: req.user
@@ -58,8 +58,8 @@ module.exports = {
         });
       })(req, res);
     } else if (req.method === 'GET') {
-      if (req.user) {
-        return res.redirect('user/profile')
+      if (req.isAuthenticated()) {
+        return res.redirect('/book')
       }
       return res.view('login')
     }

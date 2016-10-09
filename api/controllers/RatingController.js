@@ -7,7 +7,7 @@
 
 module.exports = {
 	rate: function(req, res) {
-    if (req.user) {
+    if (req.isAuthenticated()) {
       var params = {
         rating: req.body.rating,
         comment: req.body.comment,

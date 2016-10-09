@@ -39,7 +39,7 @@ module.exports = {
   },
 
   addBook: function(req, res) {
-    if (req.user) {
+    if (req.isAuthenticated()) {
       var book_params = {
         title: req.body.title,
         author: req.body.author,

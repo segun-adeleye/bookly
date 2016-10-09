@@ -43,7 +43,7 @@
           var data = response.data;
           if (data.user) {
             if (data.loggedIn) alert('An account is already active');
-            $window.location.href = '/user/profile';
+            $window.location.href = '/book';
           } else {
             alert(data.message)
           }
@@ -57,9 +57,9 @@
         email: $scope.email,
         password: $scope.password
       }).then(function(response) {
-          var data = response.data;
-          if (data.user) {
-            $window.location.href = '/user/profile';
+          var user = response.data;
+          if (user) {
+            $window.location.href = '/login';
           } else {
             $log.info(response);
           }
