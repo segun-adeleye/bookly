@@ -65,7 +65,6 @@ module.exports = {
                 .populate('user')
                 .populate('ratings')
                 .exec(function(err, book) {
-                  console.log(book)
                   return res.send({
                     book: book
                   });

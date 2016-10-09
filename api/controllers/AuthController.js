@@ -59,7 +59,7 @@ module.exports = {
       })(req, res);
     } else if (req.method === 'GET') {
       if (req.isAuthenticated()) {
-        return res.redirect('/book')
+        return res.redirect('/')
       }
       return res.view('login')
     }

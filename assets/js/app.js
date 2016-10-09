@@ -43,7 +43,7 @@
           var data = response.data;
           if (data.user) {
             if (data.loggedIn) alert('An account is already active');
-            $window.location.href = '/book';
+            $window.location.href = '/';
           } else {
             alert(data.message)
           }
