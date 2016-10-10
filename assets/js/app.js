@@ -78,9 +78,13 @@
         book: $scope.book.id
       }).then(function(response) {
         var rating = response.data;
+        console.log(rating)
         var bookIndex = $scope.bookList.findIndex(function(book) {
+          console.log(book.id);
+          console.log(rating.book);
           return book.id === rating.book;
         });
+        console.log(bookIndex);
         $scope.bookList[bookIndex].ratings.push(rating);
       }, function(response) {
            $log.info(response);
