@@ -77,7 +77,7 @@
         comment: $scope.addComment,
         book: $scope.book.id
       }).then(function(response) {
-        var rating = response.data.rating;
+        var rating = response.data;
         var bookIndex = $scope.bookList.findIndex(function(book) {
           return book.id === rating.book;
         });
