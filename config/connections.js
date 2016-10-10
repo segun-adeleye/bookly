@@ -48,6 +48,14 @@ module.exports.connections = {
   //   database: 'YOUR_MYSQL_DB' //optional
   // },
 
+    booklyMysqlAdapter: {
+      adapter: 'sails-mysql',
+      host: process.env.CDB_HOST,
+      user: process.env.CDB_USERNAME, //optional
+      password: process.env.CDB_PASSWORD, //optional
+      database: process.env.CDB_DATABASE //optional
+    }
+
   /***************************************************************************
   *                                                                          *
   * MongoDB is the leading NoSQL database.                                   *
