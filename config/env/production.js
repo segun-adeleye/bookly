@@ -17,18 +17,18 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
-  models: {
-  //   connection: 'someMysqlServer'
-    connections: {
-      booklyMysqlAdapter: {
-        adapter: 'sails-mysql',
-        host: process.env.CDB_HOST,
-        user: process.env.CDB_USERNAME, //optional
-        password: process.env.CDB_PASSWORD, //optional
-        database: process.env.CDB_DATABASE //optional
-      }
-    }
-  },
+  // models: {
+  // //   connection: 'someMysqlServer'
+  //   connections: {
+  //     booklyMysqlAdapter: {
+  //       adapter: 'sails-mysql',
+  //       host: process.env.CDB_HOST,
+  //       user: process.env.CDB_USERNAME, //optional
+  //       password: process.env.CDB_PASSWORD, //optional
+  //       database: process.env.CDB_DATABASE //optional
+  //     }
+  //   }
+  // },
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
