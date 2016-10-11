@@ -15,6 +15,7 @@ module.exports = {
 
   getAllBooks: function(req, res) {
     Book.find()
+      .sort('createdAt')
       .populate('user')
       .populate('ratings')
       .exec(function(err, books) {

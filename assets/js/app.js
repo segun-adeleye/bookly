@@ -17,6 +17,8 @@
         });
     };
 
+    $scope.getBooks();
+
     $scope.addBook = function() {
       $http.post('/addBook', {
         title: $scope.title,
@@ -31,7 +33,15 @@
         });
     };
 
-    $scope.getBooks();
+    $scope.getAverageRating = book => {
+      var ratingsArray = book.ratings.map(rate => rate.rating)
+      var totalRating = ratingsArray.reduce((prev, curr) => prev + curr);
+      return totalRating / ratingsArray.length;
+    };
+
+    $scope.getTotalRatingMessage = ratingsCount =>
+      `${ratingsCount} ${ratingsCount > 1 ? 'people' : 'person'}`;
+
   }]);
 
   app.controller('AuthController', ['$scope', '$log', '$http', '$window', function($scope, $log, $http, $window) {
