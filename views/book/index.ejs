@@ -5,6 +5,8 @@
     <li>
       <p><strong>{{ book.id }}</strong> - {{ book.title }} by {{ book.author }}.</p>
       <p>>>> Uploaded by {{ book.user.email }}</p>
+      <p>Average Rating: {{ getAverageRating(book) }} by {{ getTotalRatingMessage(book.ratings.length) }}</p>
+
       <form ng-controller="RatingController" ng-submit="rate()">
         <%- partial('rating.ejs', { ratingNgModel: 'addRating', commentNgModel: 'addComment' }) %>
         <input type="hidden" ng-model="book.id" value="{{ book.id }}">
