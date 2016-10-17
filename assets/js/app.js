@@ -33,14 +33,15 @@
         });
     };
 
-    $scope.getAverageRating = book => {
-      var ratingsArray = book.ratings.map(rate => rate.rating)
-      var totalRating = ratingsArray.reduce((prev, curr) => prev + curr);
+    $scope.getAverageRating = function(book) {
+      var ratingsArray = book.ratings.map(function(rate) { return rate.rating });
+      var totalRating = ratingsArray.reduce(function(prev, curr) { return prev + curr });
       return totalRating / ratingsArray.length;
     };
 
-    $scope.getTotalRatingMessage = ratingsCount =>
-      `${ratingsCount} ${ratingsCount > 1 ? 'people' : 'person'}`;
+    $scope.getTotalRatingMessage = function(ratingsCount) {
+      return ratingsCount + ' ' + (ratingsCount > 1 ? 'people' : 'person');
+    };
 
   }]);
 
