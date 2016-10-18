@@ -10,15 +10,24 @@
         </div>
 
         <div class="col-lg-offset-1 col-lg-5" style="padding: 0">
-          <p class="text-right"><strong>{{ avgRatinng = getAverageRating(book) }}</strong><br>
-            {{ getTotalRatingMessage(book.ratings.length) }}</p>
-          <div class="progress"><div class="progress-bar progress-bar-info" style="width:{{ ratingBarArray[avgRatinng - 1] }}%"></div></div>
+          <p class="text-right">
+            <strong>
+              {{ avgRating = getAverageRating(book) }} star{{ avgRating > 1 ? 's' : '' }}
+            </strong>
+            <br>
+            <em>...rated by {{ getTotalRatingMessage(book.ratings.length) }}</em>
+          </p>
+
+          <div class="progress">
+            <div class="progress-bar progress-bar-info" style="width:{{ ratingBarArray[avgRating - 1] }}%"></div>
+          </div>
+
           <p id="ratings-markers">
             <span>1</span>
             <span>2</span>
             <span>3</span>
             <span>4</span>
-            <span>5</span>
+            <!-- <span>5</span> -->
           </p>
         </div>
       </div>
