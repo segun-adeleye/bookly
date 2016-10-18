@@ -1,0 +1,5 @@
+#ratings-markers span {
+  width: 19%;
+  display: inline-block;
+  text-align: right;
+}

@@ -5,6 +5,7 @@
     $scope.baseUrl = 'http://' + $location.host() + ':' + $location.port();
     $scope.bookList = [];
     $scope.userList;
+    $scope.ratingBarArray = [18, 38, 58, 78, 100];
 
     $scope.getBooks = function() {
       $http.get('/book/getAllBooks')
@@ -36,7 +37,7 @@
     $scope.getAverageRating = function(book) {
       var ratingsArray = book.ratings.map(function(rate) { return rate.rating });
       var totalRating = ratingsArray.reduce(function(prev, curr) { return prev + curr });
-      return totalRating / ratingsArray.length;
+      return Math.floor(totalRating / ratingsArray.length);
     };
 
     $scope.getTotalRatingMessage = function(ratingsCount) {
