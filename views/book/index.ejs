@@ -1,24 +1,27 @@
 <div ng-controller="BookController">
   <%- partial('form.ejs', { ratingNgModel: 'rating', commentNgModel: 'comment' }) %>
-  <h2>Books</h2>
-  <ul ng-repeat="book in bookList">
-    <li>
-      <p><strong>{{ book.id }}</strong> - {{ book.title }} by {{ book.author }}.</p>
-      <p>>>> Uploaded by {{ book.user.email }}</p>
-      <p>Average Rating: {{ getAverageRating(book) }} by {{ getTotalRatingMessage(book.ratings.length) }}</p>
+  <div class="col-lg-offset-1 col-lg-7">
+    <h2>Books</h2>
+    <ul ng-repeat="book in bookList">
+      <li>
+        <p><strong>{{ book.id }}</strong> - {{ book.title }} by {{ book.author }}.</p>
+        <p>>>> Uploaded by {{ book.user.email }}</p>
+        <p>Average Rating: {{ getAverageRating(book) }} by {{ getTotalRatingMessage(book.ratings.length) }}</p>
 
-      <form ng-controller="RatingController" ng-submit="rate()">
-        <%- partial('rating.ejs', { ratingNgModel: 'addRating', commentNgModel: 'addComment' }) %>
-        <input type="hidden" ng-model="book.id" value="{{ book.id }}">
-      </form>
-      <h3>Ratings</h3>
-      <ul ng-repeat="rating in book.ratings">
-        <li>
-          <p>{{ rating.rating }} by {{ userList[rating.user].email }}</p>
-          <p ng-show="rating.comment">Comment: {{ rating.comment }}<p>
-        </li>
-      </ul>
-    </li>
-    <hr style="border-color:#bbb; width:350px; margin: 20px 0;">
-  </ul>
+        <form ng-controller="RatingController" ng-submit="rate()">
+          <%- partial('rating.ejs', { ratingNgModel: 'addRating', commentNgModel: 'addComment' }) %>
+          <input type="hidden" ng-model="book.id" value="{{ book.id }}">
+        </form>
+        <h3>Ratings</h3>
+        <ul ng-repeat="rating in book.ratings">
+          <li>
+            <p>{{ rating.rating }} by {{ userList[rating.user].email }}</p>
+            <p ng-show="rating.comment">Comment: {{ rating.comment }}<p>
+          </li>
+        </ul>
+      </li>
+      <hr style="border-color:#bbb; width:350px; margin: 20px 0;">
+    </ul>
+  </div>
 </div>
+
