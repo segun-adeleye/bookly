@@ -1,24 +1,45 @@
-<div ng-controller="BookController">
+<section ng-controller="BookController" class="container">
   <%- partial('form.ejs', { ratingNgModel: 'rating', commentNgModel: 'comment' }) %>
-  <h2>Books</h2>
-  <ul ng-repeat="book in bookList">
-    <li>
-      <p><strong>{{ book.id }}</strong> - {{ book.title }} by {{ book.author }}.</p>
-      <p>>>> Uploaded by {{ book.user.email }}</p>
-      <p>Average Rating: {{ getAverageRating(book) }} by {{ getTotalRatingMessage(book.ratings.length) }}</p>
+  <div class="col-lg-offset-2 col-lg-6">
+    <h2>Books</h2>
+    <div ng-repeat="book in bookList" class="row">
+      <div class="row">
+        <div class="col-lg-6">
+          <p><strong>{{ book.id }}</strong> - {{ book.title }} written by {{ book.author }}.</p>
+          <p>>>> Uploaded by {{ book.user.email }}</p>
+        </div>
 
-      <form ng-controller="RatingController" ng-submit="rate()">
-        <%- partial('rating.ejs', { ratingNgModel: 'addRating', commentNgModel: 'addComment' }) %>
-        <input type="hidden" ng-model="book.id" value="{{ book.id }}">
-      </form>
-      <h3>Ratings</h3>
-      <ul ng-repeat="rating in book.ratings">
-        <li>
-          <p>{{ rating.rating }} by {{ userList[rating.user].email }}</p>
-          <p ng-show="rating.comment">Comment: {{ rating.comment }}<p>
-        </li>
-      </ul>
-    </li>
-    <hr style="border-color:#bbb; width:350px; margin: 20px 0;">
-  </ul>
-</div>
+        <div class="col-lg-offset-1 col-lg-5" style="padding: 0">
+          <p class="text-right"><strong>{{ avgRatinng = getAverageRating(book) }}</strong><br>
+            {{ getTotalRatingMessage(book.ratings.length) }}</p>
+          <div class="progress"><div class="progress-bar progress-bar-info" style="width:{{ ratingBarArray[avgRatinng - 1] }}%"></div></div>
+          <p id="ratings-markers">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <form ng-controller="RatingController" ng-submit="rate()" class="form-horizontal">
+          <%- partial('rating.ejs', { ratingNgModel: 'addRating', commentNgModel: 'addComment' }) %>
+          <input type="hidden" ng-model="book.id" value="{{ book.id }}">
+        </form>
+      </div>
+
+      <div class="row">
+        <h3>Ratings</h3>
+        <ul ng-repeat="rating in book.ratings">
+          <li>
+            <p>{{ rating.rating }} by {{ userList[rating.user].email }}</p>
+            <p ng-show="rating.comment">Comment: {{ rating.comment }}<p>
+          </li>
+        </ul>
+      </div>
+      <hr>
+    </div>
+  </div>
+</section>
